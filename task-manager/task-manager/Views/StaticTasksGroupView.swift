@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct TasksGroupView: View {
+struct StaticTasksGroupView: View {
     
     let title: String
     let tasks: [Task]
@@ -23,5 +23,5 @@ struct TasksGroupView: View {
 }
 
 #Preview {
-    TasksGroupView(title: "All", tasks: Task.testTasks())
+    StaticTasksGroupView(title: "All", tasks: Task.testTasks())
 }

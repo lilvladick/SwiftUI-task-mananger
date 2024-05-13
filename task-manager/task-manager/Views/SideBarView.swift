@@ -1,15 +1,8 @@
-//
-//  SideBarView.swift
-//  task-manager
-//
-//  Created by Владислав Кириллов on 13.05.2024.
-//
-
 import SwiftUI
 
 struct SideBarView: View {
     
-    let userCreated: [TasksGroup]
+    @Binding var userCreated: [TasksGroup]
     @Binding var selection: TaskSection
     
     var body: some View {
@@ -21,17 +14,27 @@ struct SideBarView: View {
                 }
             }
             Section("Personal Groups"){
-                ForEach(userCreated) { group in
-                    Label(group.title, systemImage: "folder")
-                        .tag(TaskSection.list(group))
+                ForEach($userCreated) { $group in
+                    HStack{
+                        Image(systemName: "folder")
+                        TextField("New Group", text: $group.title)
+                    }.tag(TaskSection.list(group))
                 }
             }
+        }
+        
+        .safeAreaInset(edge: .bottom) {
+            Button(action: {
+                let newGroup = TasksGroup(title: "New Group")
+                userCreated.append(newGroup)
+            }, label: {
+                Label("New Group", systemImage: "plus.circle")
+            }).buttonStyle(.borderless).foregroundColor(.accentColor).padding().frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/, alignment: .leading)
         }
     }
 }
 
 #Preview {
-    SideBarView(userCreated: TasksGroup.basicGroups(),
-                selection: .constant(.all))
-        .listStyle(.sidebar)
+    SideBarView(userCreated: .constant(TasksGroup.basicGroups()),
+                selection: .constant(.all)).listStyle(.sidebar)
 }
