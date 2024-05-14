@@ -15,13 +15,13 @@ struct Task: Identifiable, Hashable {
     }
     
     static func testTask() -> Task {
-        Task(title: "evolve", endDate: Calendar.current.date(byAdding: .day, value: 2, to: Date())!)
+        Task(title: "evolve", endDate: Calendar.current.date(byAdding: .day, value: 2, to: Date())!, description: "start now")
     }
     
     static func testTasks() -> [Task] {
         [
             Task(title: "go to school"),
-            Task(title: "buy a new keyboard", endDate: Calendar.current.date(byAdding: .day, value: 4, to: Date())!),
+            Task(title: "buy a new keyboard", endDate: Calendar.current.date(byAdding: .day, value: 4, to: Date())!, description: "logi mx"),
             Task(title: "make dinner", isCompleted: true),
             Task(title: "clean my room", isCompleted: true ,endDate: Calendar.current.date(byAdding: .day, value: 2, to: Date())!),
         ]

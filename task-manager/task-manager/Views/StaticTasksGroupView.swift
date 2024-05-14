@@ -1,10 +1,3 @@
-//
-//  TasksGroupView.swift
-//  task-manager
-//
-//  Created by Владислав Кириллов on 13.05.2024.
-//
-
 import SwiftUI
 
 struct StaticTasksGroupView: View {
@@ -14,12 +7,20 @@ struct StaticTasksGroupView: View {
     
     var body: some View {
         List(tasks) { task in
-            HStack {
-                Image(systemName: task.isCompleted ? "largecircle.fill.circle" : "circle")
-                Text(task.title)
+            VStack(alignment: .leading) {
+                HStack {
+                    Image(systemName: task.isCompleted ? "largecircle.fill.circle" : "circle")
+                    Text(task.title)
+                }
+                if ((task.description?.isEmpty) != nil) {
+                    Text(task.description ?? "")
+                        .padding(.leading,23) //костыль
+                        .foregroundColor(.gray).fontWeight(.bold)
+                }
             }
         }
     }
+
 }
 
 #Preview {
