@@ -11,6 +11,12 @@ struct StaticTasksGroupView: View {
                 HStack {
                     Image(systemName: task.isCompleted ? "largecircle.fill.circle" : "circle")
                     Text(task.title)
+                    Spacer()
+                    if let endDate = task.endDate as? Date{
+                        Text("\(endDate.formatted())")
+                            .foregroundColor(.gray)
+                            .fontWeight(.bold)
+                    }
                 }
                 if ((task.description?.isEmpty) != nil) {
                     Text(task.description ?? "")

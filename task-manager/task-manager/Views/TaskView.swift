@@ -19,6 +19,18 @@ struct TaskView: View {
                         task.isCompleted.toggle()
                     }
                 TextField("New task", text: $task.title).textFieldStyle(.plain)
+                Spacer()
+                if let endDate = task.endDate as? Date{
+                    Text("\(endDate.formatted())")
+                        .foregroundColor(.gray)
+                        .fontWeight(.bold)
+                }
+            }
+            //Проблема с пробелом =(
+            if ((task.description?.isEmpty) != nil) {
+                Text(task.description ?? "")
+                    .padding(.leading,23) //костыль
+                    .foregroundColor(.gray).fontWeight(.bold)
             }
         }
     }
